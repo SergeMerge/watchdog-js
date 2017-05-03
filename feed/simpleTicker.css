@@ -1,0 +1,5 @@
+#ticker { width:180px; height:300px;  overflow:auto; }
+#ticker dt { padding:0 10px 5px 10px;  padding-top:10px;  border-bottom:none; border-right:none; position:relative; }
+#ticker dd { margin-left:0;    position:relative; }
+#ticker dd.last { border-bottom:1px solid #ffffff; }
+#ticker div { margin-top:0; }

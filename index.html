@@ -1,0 +1,256 @@
+<html lang="en">
+<head>
+    <!--NOTE: Most Web World Wind examples use jquery, Bootstrap and requirejs but those technologies are NOT-->
+    <!--required by Web World Wind. See SimplestExample.html for an example of using Web World Wind without them.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="http://worldwindserver.net/webworldwind/worldwind.min.js" type="text/javascript"></script>
+    <script data-main="world_wide_watchdog"
+            src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>          
+    <link rel="stylesheet" type="text/css" href="feed/simpleTicker.css">
+    <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 tab-color">
+    <div class="page-header hidden-xs" style=" text-align:center">
+        <img width="100%" src="img/logo.png" alt="Nasa Watchdog"/>
+    </div>
+            <h2>Location</h2>
+            <form action="">
+                <form>
+                    <div class="form-group">
+                        <label for="latitudeInput">Latitude</label>
+                        <input type="text" class="form-control" id="latitudeInput" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitudeInput">Longitude</label>
+                        <input type="text" class="form-control" id="longitudeInput" placeholder="">
+                    </div>
+                    <button id="location-submit" class="btn btn-default">Submit</button>
+                </form>
+            </form>
+            <h2>Feeds:</h2>
+            
+            <div id="tickerContainer tab-color" style="width: 100%;">
+              <dl id="ticker" style="width: 100%;">
+                <dt class="heading">                
+                   <img src="data/first_image.jpg" style="width: 100%; height: 200px">
+                </dt>
+                <dd class="text">                
+                  <div class="item active" style="width: 80%; margin-left:10px;">
+                    <div>Report from #Fez in #Morocco (famous for leather) looks like the edge of a huge CB #cloud that triggered the alerts on map 33/30 #eustorm</div>
+                  </div>
+                </dd>
+                
+                <dt class="heading">                
+                    <img src="data/second_image.jpg" style="width: 100%; height: 200px"></dt>
+                <dd class="text">                
+                  <div class="item" style="width: 80%; margin-left:10px;">
+                    <div style="color:red">111.6mm of #rain so far in #Huelva #Spain this morning #flooding underway in many areas! We thank @MPEGrupo & @weatherpablo for the reports.</div>
+                  </div>
+                </dd>
+                
+                <dt class="heading">                 
+                    <img src="data/third_image.jpg" style="width: 100%; height: 200px">
+                </dt>
+                <dd class="text">
+                  <div class="item" style="width: 80%; margin-left:10px;">
+                    <div>Giant Earth crack opens up in Northern Cape, South Africa <a href="http://buff.ly/2lm8qCj">http://buff.ly/2lm8qCj</a> </div>
+                  </div>                 
+                </dd>
+                
+                <dt class="heading">                 
+                    <img src="data/fourth_image.jpg" style="width: 100%; height: 200px">
+                </dt>
+                <dd class="text">
+                  <div class="item" style="width: 80%; margin-left:10px;">
+                    <div style="color:orange">Gigantic earth #crack opens up in #Pakistan sparking fears among locals <a href="http://strangesounds.org/2017/02/gigantic-earth-crack-pakistan-video-sparking-fears-among-locals.html">http://strangesounds.org/2017/02/gigantic-earth-crack-pakistan-video-sparking-fears-among-locals.html</a> … via @Strange_Sounds</div>
+                  </div>                 
+                </dd>              
+              </dl>
+            </div>
+        </div>
+        <div class="col-sm-6 tab-color" id="globe">
+            <canvas id="canvasOne" width="1000" height="1000" style="width: 100%; height: auto">
+                Your browser does not support HTML5 Canvas.
+            </canvas>
+        </div>
+        <div class="col-sm-3 tab-color">
+            <div id="disasters-list">
+                <h2>Closest 5 risks:</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>time</th>
+                        <th>distance</th>
+                        <th>type</th>
+                        <th>risk</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table-top-disasters-body">
+                    </tbody>
+                </table>
+            </div>
+            <div style="height: 190px;">
+            <h2>Messages:</h2>
+                <div id="tickerContainer tab-color" style="width: 100%;"> 
+                  <dl id="ticker-messages" style="width: 100%;">
+                    <dt class="heading">                
+                       Message from 1 user
+                    </dt>
+                    <dd class="text">  
+                       Horrible disaster!
+                    </dd>
+                    
+                    <dt class="heading">            
+                       Message from 2 user   
+                    </dt>
+                    <dd class="text">              
+                       Oh, GOD!!!
+                    </dd>
+                    
+                    
+                    <dt class="heading">            
+                       Message from 1 user   
+                    </dt>
+                    <dd class="text">              
+                       The road is closed
+                    </dd>
+                    <dt class="heading">            
+                       Message from 3 user   
+                    </dt>
+                    <dd class="text">              
+                       Port is closed. Can somebody help?
+                    </dd>
+                  </dl>
+                </div>      
+            </div>
+    </div>
+</div>
+<div class="tab-bottom">
+<a href="javascript:void(0)">Get our mobile application!</a>
+<a href="https://www.facebook.com/nasawatchdog/"><i class="fa fa-facebook"></i></a>
+</div> 
+</body>
+
+    <script type="text/javascript">
+	  $(function() {
+	  
+		//cache the ticker
+		var ticker = $("#ticker");
+		  
+		//wrap dt:dd pairs in divs
+		ticker.children().filter("dt").each(function() {
+		  
+		  var dt = $(this),
+		    container = $("<div>");
+		  
+		  dt.next().appendTo(container);
+		  dt.prependTo(container);
+		  
+		  container.appendTo(ticker);
+		});
+				
+		//hide the scrollbar
+		ticker.css("overflow", "hidden");
+		
+		//animator function
+		function animator(currentItem) {
+		    
+		  //work out new anim duration
+		  var distance = currentItem.height();
+			duration = (distance + parseInt(currentItem.css("marginTop"))) / 0.025;
+
+		  //animate the first child of the ticker
+		  currentItem.animate({ marginTop: -distance }, duration, "linear", function() {
+		    
+			//move current item to the bottom
+			currentItem.appendTo(currentItem.parent()).css("marginTop", 0);
+
+			//recurse
+			animator(currentItem.parent().children(":first"));
+		  }); 
+		};
+		
+		//start the ticker
+		animator(ticker.children(":first"));
+				
+		//set mouseenter
+		ticker.mouseenter(function() {
+		  
+		  //stop current animation
+		  ticker.children().stop();
+		  
+		});
+		
+		//set mouseleave
+		ticker.mouseleave(function() {
+		          
+          //resume animation
+		  animator(ticker.children(":first"));
+		  
+		});
+        
+        //cache the ticker
+		var ticker = $("#ticker-messages");
+		  
+		//wrap dt:dd pairs in divs
+		ticker.children().filter("dt").each(function() {
+		  
+		  var dt = $(this),
+		    container = $("<div>");
+		  
+		  dt.next().appendTo(container);
+		  dt.prependTo(container);
+		  
+		  container.appendTo(ticker);
+		});
+				
+		//hide the scrollbar
+		ticker.css("overflow", "hidden");
+		
+		//animator function
+		function animator(currentItem) {
+		    
+		  //work out new anim duration
+		  var distance = currentItem.height();
+			duration = (distance + parseInt(currentItem.css("marginTop"))) / 0.025;
+
+		  //animate the first child of the ticker
+		  currentItem.animate({ marginTop: -distance }, duration, "linear", function() {
+		    
+			//move current item to the bottom
+			currentItem.appendTo(currentItem.parent()).css("marginTop", 0);
+
+			//recurse
+			animator(currentItem.parent().children(":first"));
+		  }); 
+		};
+		
+		//start the ticker
+		animator(ticker.children(":first"));
+				
+		//set mouseenter
+		ticker.mouseenter(function() {
+		  
+		  //stop current animation
+		  ticker.children().stop();
+		  
+		});
+		
+		//set mouseleave
+		ticker.mouseleave(function() {
+		          
+          //resume animation
+		  animator(ticker.children(":first"));
+		  
+		});
+	  });
+    </script>
+</html>
